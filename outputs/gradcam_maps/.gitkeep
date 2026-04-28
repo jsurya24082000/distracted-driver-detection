@@ -1,0 +1,5 @@
+# This directory stores Grad-CAM visualization outputs
+# Subdirectories created per architecture:
+# - efficientnet_b0/
+# - mobilenet_v3_small/
+# - resnet50/

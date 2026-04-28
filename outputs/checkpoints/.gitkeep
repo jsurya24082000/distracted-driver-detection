@@ -1,0 +1,5 @@
+# This directory stores model checkpoints
+# Files generated during training:
+# - best_{arch_name}.pth - Best model checkpoint
+# - final_{arch_name}.pth - Final model checkpoint
+# - history_{arch_name}.json - Training history

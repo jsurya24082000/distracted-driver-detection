@@ -1,0 +1,43 @@
+# Configuration file for Distracted Driver Detection project
+# =========================================================
+
+data:
+  data_dir: "data/raw/state_farm"
+  auc_dir: "data/raw/auc_dataset"
+  img_size: 224
+  train_split: 0.8
+  num_workers: 4
+  num_classes: 10
+
+training:
+  epochs: 30
+  batch_size: 32
+  optimizer: "adamw"
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+  scheduler: "cosine"
+  scheduler_t_max: 20
+  label_smoothing: 0.1
+  use_class_weights: true
+  seed: 42
+
+models:
+  architectures:
+    - "efficientnet_b0"
+    - "mobilenet_v3_small"
+    - "resnet50"
+  pretrained: true
+
+gradcam:
+  method: "gradcam"
+  save_dir: "outputs/gradcam_maps"
+
+export:
+  onnx: true
+  torchscript: true
+  export_dir: "outputs/exports"
+
+outputs:
+  checkpoints_dir: "outputs/checkpoints"
+  results_dir: "outputs/results"
+  gradcam_dir: "outputs/gradcam_maps"

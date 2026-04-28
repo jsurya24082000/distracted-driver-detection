@@ -1,0 +1,43 @@
+# Data - too large for GitHub
+data/raw/
+data/processed/
+
+# Model checkpoints (large files)
+outputs/checkpoints/*.pth
+outputs/checkpoints/*.pt
+
+# ONNX exports
+outputs/exports/*.onnx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

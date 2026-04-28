@@ -1,0 +1,4 @@
+# This directory stores exported models
+# Files generated:
+# - {arch_name}.onnx - ONNX format model
+# - {arch_name}.pt - TorchScript format model

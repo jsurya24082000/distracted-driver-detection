@@ -1,0 +1,6 @@
+# This directory stores evaluation results
+# Files generated:
+# - {arch_name}_results.json - Evaluation metrics
+# - {arch_name}_confusion_matrix.png - Confusion matrix plot
+# - {arch_name}_training_curves.png - Training curves plot
+# - efficiency_report.csv - Model efficiency comparison
