@@ -1,0 +1,113 @@
+{
+  "efficientnet_b0": {
+    "arch": "efficientnet_b0",
+    "total": 609,
+    "correct": 0,
+    "correct_mapped": 475,
+    "per_class_correct": {
+      "drinking": 63,
+      "hair and makeup": 72,
+      "operating the radio": 67,
+      "reaching behind": 60,
+      "safe driving": 69,
+      "talking on the phone": 48,
+      "talking to passenger": 57,
+      "texting": 39
+    },
+    "per_class_total": {
+      "drinking": 63,
+      "hair and makeup": 80,
+      "operating the radio": 69,
+      "reaching behind": 60,
+      "safe driving": 72,
+      "talking on the phone": 100,
+      "talking to passenger": 71,
+      "texting": 94
+    },
+    "accuracy": 0.7799671592775042,
+    "per_class_accuracy": {
+      "drinking": 1.0,
+      "hair and makeup": 0.9,
+      "operating the radio": 0.9710144927536232,
+      "reaching behind": 1.0,
+      "safe driving": 0.9583333333333334,
+      "talking on the phone": 0.48,
+      "talking to passenger": 0.8028169014084507,
+      "texting": 0.4148936170212766
+    }
+  },
+  "mobilenet_v3_small": {
+    "arch": "mobilenet_v3_small",
+    "total": 609,
+    "correct": 0,
+    "correct_mapped": 431,
+    "per_class_correct": {
+      "drinking": 60,
+      "hair and makeup": 52,
+      "operating the radio": 53,
+      "reaching behind": 58,
+      "safe driving": 57,
+      "talking on the phone": 48,
+      "talking to passenger": 62,
+      "texting": 41
+    },
+    "per_class_total": {
+      "drinking": 63,
+      "hair and makeup": 80,
+      "operating the radio": 69,
+      "reaching behind": 60,
+      "safe driving": 72,
+      "talking on the phone": 100,
+      "talking to passenger": 71,
+      "texting": 94
+    },
+    "accuracy": 0.7077175697865353,
+    "per_class_accuracy": {
+      "drinking": 0.9523809523809523,
+      "hair and makeup": 0.65,
+      "operating the radio": 0.7681159420289855,
+      "reaching behind": 0.9666666666666667,
+      "safe driving": 0.7916666666666666,
+      "talking on the phone": 0.48,
+      "talking to passenger": 0.8732394366197183,
+      "texting": 0.43617021276595747
+    }
+  },
+  "resnet50": {
+    "arch": "resnet50",
+    "total": 609,
+    "correct": 0,
+    "correct_mapped": 473,
+    "per_class_correct": {
+      "drinking": 63,
+      "hair and makeup": 69,
+      "operating the radio": 66,
+      "reaching behind": 59,
+      "safe driving": 70,
+      "talking on the phone": 50,
+      "talking to passenger": 57,
+      "texting": 39
+    },
+    "per_class_total": {
+      "drinking": 63,
+      "hair and makeup": 80,
+      "operating the radio": 69,
+      "reaching behind": 60,
+      "safe driving": 72,
+      "talking on the phone": 100,
+      "talking to passenger": 71,
+      "texting": 94
+    },
+    "accuracy": 0.7766830870279147,
+    "per_class_accuracy": {
+      "drinking": 1.0,
+      "hair and makeup": 0.8625,
+      "operating the radio": 0.9565217391304348,
+      "reaching behind": 0.9833333333333333,
+      "safe driving": 0.9722222222222222,
+      "talking on the phone": 0.5,
+      "talking to passenger": 0.8028169014084507,
+      "texting": 0.4148936170212766
+    }
+  }
+}
