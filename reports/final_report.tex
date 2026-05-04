@@ -1,0 +1,185 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\title{Distracted Driver Detection using Deep Learning with Domain Generalization Analysis}
+
+\author{
+\IEEEauthorblockN{Jayasurya Jayadevan}
+\IEEEauthorblockA{121306067\\University of Maryland\\jayasurya@umd.edu}
+\and
+\IEEEauthorblockN{Karthikaa Mikkilineni}
+\IEEEauthorblockA{20602214\\University of Maryland\\karthikaa@umd.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Distracted driving causes over 3,000 fatalities annually in the United States. This paper presents a deep learning system for real-time classification of driver distraction behaviors using in-cabin camera images. We compare three CNN architectures—EfficientNet-B0, MobileNetV3-Small, and ResNet50—achieving up to 90.5\% accuracy on the State Farm dataset. Our novel contributions include: (1) cross-subject domain generalization analysis showing 99.7\% accuracy on unseen drivers, (2) cross-dataset evaluation achieving 78\% accuracy when transferring to the Roboflow dataset, and (3) CAM quality assessment using the Pointing Game metric. We provide a Streamlit web demo for real-time inference. Code available at: \url{https://github.com/jsurya24082000/distracted-driver-detection}
+\end{abstract}
+
+\section{Introduction}
+
+Distracted driving is a leading cause of road accidents worldwide. According to the NHTSA, distracted driving claimed 3,522 lives in 2021 alone. Traditional monitoring systems rely on physiological sensors or manual observation, which are intrusive and impractical for widespread deployment.
+
+Computer vision offers a non-intrusive alternative by analyzing dashboard camera footage to detect distraction behaviors in real-time. This project develops and evaluates CNN-based classifiers for 10 categories of driver behavior, with emphasis on model explainability and domain generalization.
+
+\textbf{Key Contributions:}
+\begin{itemize}
+    \item Comparison of three CNN architectures with accuracy-efficiency trade-offs
+    \item Cross-subject and cross-dataset domain generalization analysis
+    \item CAM quality evaluation using the Pointing Game metric
+    \item Interactive web demo for real-time inference
+\end{itemize}
+
+\section{Methodology}
+
+\subsection{Dataset}
+
+We use the State Farm Distracted Driver Detection dataset from Kaggle, containing 22,424 labeled images across 10 classes from 26 unique drivers:
+
+\begin{itemize}
+    \item c0: Safe driving
+    \item c1-c4: Phone-related distractions (texting/calling, left/right hand)
+    \item c5: Operating the radio
+    \item c6: Drinking
+    \item c7: Reaching behind
+    \item c8: Hair and makeup
+    \item c9: Talking to passenger
+\end{itemize}
+
+\subsection{Subject-Aware Data Splitting}
+
+To prevent data leakage, we implement subject-aware splitting where images from the same driver appear only in either training or validation sets. This ensures the model learns generalizable features rather than memorizing individual drivers.
+
+\subsection{Model Architectures}
+
+We evaluate three architectures with different complexity-accuracy trade-offs:
+
+\textbf{EfficientNet-B0}: Compound scaling with 4.0M parameters, balancing accuracy and efficiency.
+
+\textbf{MobileNetV3-Small}: Optimized for mobile deployment with 1.5M parameters and depthwise separable convolutions.
+
+\textbf{ResNet50}: Deep residual network with 23.5M parameters for maximum accuracy.
+
+\subsection{Training Configuration}
+
+\begin{itemize}
+    \item Optimizer: AdamW with learning rate 1e-4
+    \item Scheduler: Cosine annealing
+    \item Batch size: 32
+    \item Epochs: 5
+    \item Data augmentation: Random crop, horizontal flip, color jitter
+    \item Input resolution: 224×224
+\end{itemize}
+
+\subsection{Domain Generalization Analysis}
+
+We evaluate generalization through two approaches:
+
+\textbf{Cross-Subject}: Test on 2 held-out drivers never seen during training.
+
+\textbf{Cross-Dataset}: Train on State Farm, test on Roboflow dataset (different cameras, lighting, subjects).
+
+\subsection{CAM Quality Evaluation}
+
+We assess attention map quality using the Pointing Game metric, which measures whether the maximum activation point falls within the expected region of interest for each distraction class.
+
+\section{Results}
+
+\subsection{Classification Performance}
+
+Table \ref{tab:results} summarizes the performance of all three architectures.
+
+\begin{table}[h]
+\centering
+\caption{Model Performance Comparison}
+\label{tab:results}
+\begin{tabular}{lcccc}
+\toprule
+Model & Accuracy & F1 Score & Params & FPS \\
+\midrule
+ResNet50 & \textbf{90.5\%} & \textbf{89.8\%} & 23.5M & 31 \\
+EfficientNet-B0 & 88.1\% & 86.9\% & 4.0M & 72 \\
+MobileNetV3 & 85.9\% & 85.1\% & 1.5M & 136 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ResNet50 achieves the highest accuracy (90.5\%), while MobileNetV3 offers the best speed (136 FPS) suitable for real-time mobile deployment.
+
+\subsection{Domain Generalization}
+
+\textbf{Cross-Subject Results}: All models achieve 99.5-99.7\% accuracy on unseen drivers, demonstrating excellent generalization within the same dataset domain.
+
+\textbf{Cross-Dataset Results}: When tested on the Roboflow dataset, accuracy drops to 70.8-78.0\%, indicating domain shift due to different cameras, lighting conditions, and car interiors. EfficientNet-B0 shows the best transfer performance (78.0\%).
+
+\begin{table}[h]
+\centering
+\caption{Domain Generalization Results}
+\label{tab:domain}
+\begin{tabular}{lcc}
+\toprule
+Model & Cross-Subject & Cross-Dataset \\
+\midrule
+EfficientNet-B0 & 99.7\% & \textbf{78.0\%} \\
+MobileNetV3 & 99.5\% & 70.8\% \\
+ResNet50 & 99.7\% & 77.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{CAM Quality Analysis}
+
+The Pointing Game scores reveal that EfficientNet-B0 produces the most accurate attention maps (40.7\%), focusing on relevant regions like hands, phone, and face. Larger models (ResNet50: 29.5\%) tend to have more diffuse attention.
+
+\section{Discussion}
+
+\textbf{Accuracy vs. Efficiency}: ResNet50 offers the best accuracy but at 3x slower inference than MobileNetV3. For real-time applications, EfficientNet-B0 provides the best balance.
+
+\textbf{Domain Shift}: The 10-20\% accuracy drop on cross-dataset evaluation highlights the challenge of deploying models in new environments. Future work should explore domain adaptation techniques.
+
+\textbf{Explainability}: CAM visualizations show models correctly focus on distraction-relevant regions, building trust for safety-critical applications.
+
+\section{Conclusion}
+
+We developed a distracted driver detection system achieving 90.5\% accuracy with comprehensive evaluation of domain generalization and model explainability. Key findings include:
+
+\begin{itemize}
+    \item Subject-aware splitting prevents overfitting to individual drivers
+    \item Cross-dataset evaluation reveals significant domain shift challenges
+    \item Smaller models (EfficientNet-B0) generalize better to new domains
+    \item CAM quality correlates with model architecture design
+\end{itemize}
+
+Future work includes domain adaptation for cross-dataset transfer and temporal modeling using video sequences.
+
+\section{Acknowledgments}
+
+We thank State Farm for providing the distracted driver dataset and the course instructors for guidance throughout this project.
+
+\begin{thebibliography}{9}
+
+\bibitem{tan2019efficientnet}
+M. Tan and Q. Le, ``EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks,'' in \textit{ICML}, 2019.
+
+\bibitem{howard2019mobilenetv3}
+A. Howard et al., ``Searching for MobileNetV3,'' in \textit{ICCV}, 2019.
+
+\bibitem{he2016resnet}
+K. He et al., ``Deep Residual Learning for Image Recognition,'' in \textit{CVPR}, 2016.
+
+\bibitem{selvaraju2017gradcam}
+R. R. Selvaraju et al., ``Grad-CAM: Visual Explanations from Deep Networks,'' in \textit{ICCV}, 2017.
+
+\bibitem{eraqi2019auc}
+H. M. Eraqi et al., ``Driver Distraction Identification with an Ensemble of Convolutional Neural Networks,'' \textit{Journal of Advanced Transportation}, 2019.
+
+\end{thebibliography}
+
+\end{document}

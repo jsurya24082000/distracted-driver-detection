@@ -1,25 +1,85 @@
-# Distracted Driver Behavior Detection using CNNs with Grad-CAM Explainability
+# Distracted Driver Detection with Deep Learning
 
-A comprehensive deep learning project for classifying distracted driver behavior from in-cabin camera images using three CNN architectures with Grad-CAM visualization for model explainability.
+**Group 26** | Jayasurya Jayadevan (121306067) & Karthikaa Mikkilineni (20602214)
 
-## Project Overview
+A deep learning system for real-time distracted driver behavior classification using CNN architectures with explainability via Grad-CAM visualization.
 
-### Motivation
-Distracted driving is a leading cause of road accidents worldwide. This project develops and compares CNN-based classifiers to automatically detect distracted driving behaviors from dashboard camera footage, enabling real-time driver monitoring systems.
+---
 
-### Features
-- **Three CNN Architectures**: EfficientNet-B0, MobileNetV3-Small, and ResNet-50
-- **Grad-CAM Explainability**: Visual explanations of model predictions
-- **Subject-Aware Data Splitting**: Prevents data leakage between train/val sets
-- **Comprehensive Evaluation**: Accuracy, F1, confusion matrices, efficiency metrics
-- **Model Export**: ONNX and TorchScript formats for deployment
-- **Domain Generalization Testing**: Zero-shot evaluation on AUC dataset
+## 🚀 Quick Start (Run in 4 Steps)
 
-### Dataset
+### Step 1: Clone Repository
+```bash
+git clone https://github.com/jsurya24082000/distracted-driver-detection.git
+cd distracted-driver-detection
+```
+
+### Step 2: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Download Pre-trained Model (if not included)
+Models are included in `outputs/checkpoints/`. If missing, they will be downloaded automatically.
+
+### Step 4: Run the Demo
+```bash
+python run_demo.py
+```
+
+Or launch the interactive web app:
+```bash
+streamlit run app.py
+```
+
+---
+
+## 📊 Results Summary
+
+| Model | Accuracy | F1 Score | Parameters | Speed |
+|-------|----------|----------|------------|-------|
+| **ResNet50** | **90.5%** | **89.8%** | 23.5M | 31 FPS |
+| EfficientNet-B0 | 88.1% | 86.9% | 4.0M | 72 FPS |
+| MobileNetV3 | 85.9% | 85.1% | 1.5M | 136 FPS |
+
+### Novel Contributions
+
+| Analysis | Result |
+|----------|--------|
+| Cross-Subject Generalization | 99.7% accuracy on unseen drivers |
+| Cross-Dataset Generalization | 78.0% (State Farm → Roboflow) |
+| CAM Quality (Pointing Game) | 40.7% (EfficientNet-B0 best) |
+
+---
+
+## 📁 Project Structure
+
+```
+distracted-driver-detection/
+├── app.py                    # Streamlit web demo
+├── run_demo.py               # Quick inference demo
+├── requirements.txt          # Dependencies
+├── data/
+│   ├── dataset.py            # Dataset classes
+│   └── transforms.py         # Data augmentation
+├── models/
+│   └── model_factory.py      # Model architectures
+├── scripts/
+│   ├── train.py              # Training script
+│   ├── demo.py               # Demo with visualizations
+│   └── run_analysis.py       # Domain generalization analysis
+├── outputs/
+│   ├── checkpoints/          # Trained model weights
+│   └── results/              # Evaluation results & plots
+└── notebooks/                # Jupyter notebooks
+```
+
+---
+
+## 🎯 Dataset
+
 **State Farm Distracted Driver Detection** (Kaggle)
-- 22,424 labeled images
-- 10 classes (c0-c9)
-- 26 unique subjects
+- 22,424 labeled images | 10 classes | 26 unique drivers
 
 | Class | Description |
 |-------|-------------|
@@ -34,85 +94,29 @@ Distracted driving is a leading cause of road accidents worldwide. This project 
 | c8 | Hair and makeup |
 | c9 | Talking to passenger |
 
-## Setup Instructions
+---
 
-### 1. Clone the Repository
+## 💻 Usage
+
+### Run Inference on Sample Images
 ```bash
-git clone <repository-url>
-cd distracted_driver_detection
+python run_demo.py
 ```
 
-### 2. Create Virtual Environment
+### Launch Web Demo
 ```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
+streamlit run app.py
 ```
 
-### 3. Install Dependencies
+### Train Models (Optional)
 ```bash
-pip install -r requirements.txt
+python scripts/train.py --arch efficientnet_b0 --epochs 5
 ```
 
-### 4. Download Dataset
-1. Download from [Kaggle State Farm Competition](https://www.kaggle.com/c/state-farm-distracted-driver-detection)
-2. Extract to `data/raw/state_farm/`
-3. Ensure the following structure:
-```
-data/raw/state_farm/
-├── imgs/
-│   └── train/
-│       ├── c0/
-│       ├── c1/
-│       └── ...
-└── driver_imgs_list.csv
-```
-
-## Usage
-
-### Training
-
-Train all three models:
+### Run Analysis
 ```bash
-python scripts/train.py --arch all
+python scripts/run_analysis.py
 ```
-
-Train a specific model:
-```bash
-python scripts/train.py --arch efficientnet_b0 --epochs 30
-```
-
-With custom configuration:
-```bash
-python scripts/train.py --arch resnet50 --config configs/config.yaml --data_dir path/to/data
-```
-
-### Evaluation
-
-Evaluate a trained model:
-```bash
-python scripts/evaluate.py --arch efficientnet_b0 --checkpoint outputs/checkpoints/best_efficientnet_b0.pth
-```
-
-With AUC dataset evaluation:
-```bash
-python scripts/evaluate.py --arch efficientnet_b0 --checkpoint outputs/checkpoints/best_efficientnet_b0.pth --auc_test
-```
-
-### Model Export
-
-Export to ONNX and TorchScript:
-```bash
-python scripts/export_model.py --arch efficientnet_b0 --checkpoint outputs/checkpoints/best_efficientnet_b0.pth
-```
-
-### Jupyter Notebooks
-
-1. **01_train_and_evaluate.ipynb**: Complete training pipeline with visualizations
-2. **02_gradcam_visualization.ipynb**: Grad-CAM analysis and model comparison
-3. **03_domain_generalization.ipynb**: Cross-dataset evaluation
 
 ## Project Structure
 
