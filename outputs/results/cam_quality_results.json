@@ -1,0 +1,89 @@
+{
+  "efficientnet_b0": {
+    "arch": "efficientnet_b0",
+    "per_class_scores": {
+      "Safe Driving": 0.6,
+      "Texting (R)": 0.6,
+      "Phone (R)": 0.1,
+      "Texting (L)": 0.0,
+      "Phone (L)": 0.36666666666666664,
+      "Radio": 0.3333333333333333,
+      "Drinking": 0.8,
+      "Reaching": 0.5,
+      "Makeup": 0.3333333333333333,
+      "Passenger": 0.36666666666666664
+    },
+    "per_class_counts": {
+      "Safe Driving": 30,
+      "Texting (R)": 30,
+      "Phone (R)": 30,
+      "Texting (L)": 30,
+      "Phone (L)": 30,
+      "Radio": 30,
+      "Drinking": 30,
+      "Reaching": 30,
+      "Makeup": 30,
+      "Passenger": 30
+    },
+    "overall_score": 0.4067796610169492,
+    "total_samples": 295
+  },
+  "mobilenet_v3_small": {
+    "arch": "mobilenet_v3_small",
+    "per_class_scores": {
+      "Safe Driving": 0.36666666666666664,
+      "Texting (R)": 0.7,
+      "Phone (R)": 0.06666666666666667,
+      "Texting (L)": 0.1,
+      "Phone (L)": 0.36666666666666664,
+      "Radio": 0.36666666666666664,
+      "Drinking": 0.43333333333333335,
+      "Reaching": 0.4666666666666667,
+      "Makeup": 0.3333333333333333,
+      "Passenger": 0.26666666666666666
+    },
+    "per_class_counts": {
+      "Safe Driving": 30,
+      "Texting (R)": 30,
+      "Phone (R)": 30,
+      "Texting (L)": 30,
+      "Phone (L)": 30,
+      "Radio": 30,
+      "Drinking": 30,
+      "Reaching": 30,
+      "Makeup": 30,
+      "Passenger": 30
+    },
+    "overall_score": 0.35494880546075086,
+    "total_samples": 293
+  },
+  "resnet50": {
+    "arch": "resnet50",
+    "per_class_scores": {
+      "Safe Driving": 0.43333333333333335,
+      "Texting (R)": 0.4,
+      "Phone (R)": 0.16666666666666666,
+      "Texting (L)": 0.16666666666666666,
+      "Phone (L)": 0.23333333333333334,
+      "Radio": 0.3,
+      "Drinking": 0.26666666666666666,
+      "Reaching": 0.3333333333333333,
+      "Makeup": 0.36666666666666664,
+      "Passenger": 0.23333333333333334
+    },
+    "per_class_counts": {
+      "Safe Driving": 30,
+      "Texting (R)": 30,
+      "Phone (R)": 30,
+      "Texting (L)": 30,
+      "Phone (L)": 30,
+      "Radio": 30,
+      "Drinking": 30,
+      "Reaching": 30,
+      "Makeup": 30,
+      "Passenger": 30
+    },
+    "overall_score": 0.29491525423728815,
+    "total_samples": 295
+  }
+}

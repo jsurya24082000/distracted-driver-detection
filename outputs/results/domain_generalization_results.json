@@ -1,0 +1,17 @@
+{
+  "efficientnet_b0": {
+    "accuracy": 0.9969456322541234,
+    "correct": 1632,
+    "total": 1637
+  },
+  "mobilenet_v3_small": {
+    "accuracy": 0.9945021380574222,
+    "correct": 1628,
+    "total": 1637
+  },
+  "resnet50": {
+    "accuracy": 0.9969456322541234,
+    "correct": 1632,
+    "total": 1637
+  }
+}
