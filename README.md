@@ -118,6 +118,16 @@ python scripts/train.py --arch efficientnet_b0 --epochs 5
 python scripts/run_analysis.py
 ```
 
+---
+
+## 🤗 Hugging Face Deployment
+
+**Live Demo**: [https://huggingface.co/spaces/jsurya24082000/distracted-driver-detection](https://huggingface.co/spaces/jsurya24082000/distracted-driver-detection)
+
+Upload an image and get real-time predictions!
+
+---
+
 ## Project Structure
 
 ```
